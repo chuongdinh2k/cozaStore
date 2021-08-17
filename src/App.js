@@ -1,24 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import Header from "./components/Header/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import SignUp from "./pages/SignUp/SignUp";
+import Footer from "./components/Footer/Footer";
+import QuickViewModal from "./models/QuickViewModal/QuickViewModal";
+import Search from "./models/Search";
+import Cart from "./components/Cart/Cart";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import AuthModal from "./models/AuthModal/AuthModal";
+import Shop from "./pages/Shop/Shop";
+import Detail from "./pages/Detail/Detail";
+import About from "./pages/About/About";
+import { useSelector } from "react-redux";
+import AdminHeader from "./components/AdminHeader/AdminHeader";
+import AdminRoute from "./components/AdminRoute/AdminRoute";
+import DashBoard from "./pages/DashBoard/DashBoard";
+import Contact from "./pages/Contact/Contact";
 function App() {
+  const userInfo = useSelector((state) => state.user.data);
+  // console.log("admin", admin);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        {userInfo && userInfo.isAdmin ? "" : <Header />}
+        <ToastContainer autoClose={2000} />
+        <AuthModal />
+        <QuickViewModal />
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          {/* <Route path="/shop">
+            <Shop />
+          </Route> */}
+          <Route path="/detail/:id" exact>
+            <Detail />
+          </Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+
+          <Route path="/shop/:id" exact>
+            <Shop />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+
+          {/* adminRoute */}
+          <AdminRoute path="/dashboard" component={DashBoard}></AdminRoute>
+        </Switch>
+        {userInfo && userInfo.isAdmin ? "" : <Footer />}
+      </div>
+    </Router>
   );
 }
 

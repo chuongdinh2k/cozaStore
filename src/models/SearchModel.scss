@@ -1,0 +1,13 @@
+@import "../scss/main.scss";
+.modal.fade .CartModel.modal-dialog {
+    transform:translate(50%,0);
+}
+.modal.show .CartModel.modal-dialog {
+    transform: none;
+}
+.modal.fade .CartModel.modal-dialog{
+    right: -420px;
+    @media (max-width:600px) {
+        right: 0px;
+    }
+}

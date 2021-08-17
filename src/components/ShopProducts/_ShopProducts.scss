@@ -1,0 +1,79 @@
+@import "../../scss/main.scss";
+.ShopProducts{
+    font-family: Poppins,sans-serif;
+    padding-bottom: 10rem;
+    .row{
+        --bs-gutter-x:3rem;
+    }
+    h3{ 
+        text-align:left; 
+        font-size:3rem;
+        font-weight: 800;
+        padding-bottom:2rem;
+    }
+    .item{
+        height:30rem;
+        // background-color:var(--gray-2);
+        @include breakpoint(mobile-med){
+          padding: 2rem;
+          margin-top: 4rem;
+            // background-color:blue;
+        }
+    }
+    .productName,.productPrice{
+      text-align:left; 
+      font-size: 1.4rem; 
+    }
+    .productName{
+        padding-top: .5rem;
+        color:var(--gray-2);
+    }
+    .productName:hover{
+        cursor: pointer;
+        color: var(--blue);
+    }
+    .productPrice{
+        color:var(--gray-1);
+    }
+    .image{
+        background-color:var(--gray-2);
+        position:relative;
+        height:100%;
+        overflow: hidden;
+        img{
+            height:100%;
+            transform: scale(1);
+            transition: .4s ease-in-out;
+        }
+        a{
+            position:absolute;
+            left:50%;
+            bottom: 0;
+            transform:translate(-50%,0);
+            opacity:0;
+            font-size: 1.4rem;
+            padding: 1rem 2rem;
+            background-color:white;
+            color:var(--black);
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: .4s ease-in-out;
+        }
+        a::after{
+            content:"Quick View"
+        }
+        a:hover{
+            color: white !important;
+            background-color:var(--black);
+        }
+    }
+    .image:hover a{
+        // color: white;
+        bottom: 15%;
+        opacity: 1;
+
+    }
+    .image:hover img{
+        transform: scale(1.2);
+    }
+}

@@ -1,0 +1,53 @@
+@import "../../scss/main.scss";
+.table__total{
+//    @include breakpoint(mobile){
+//        padding-left:4rem;
+//        padding-right: 4rem;
+//        padding-top: 4rem;
+//    }
+   @include breakpoint(mobile-med){
+    padding-left:1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+}
+   .table{
+    border: 1px solid var(--gray-3);
+    th,td{
+        padding:1rem;
+    }  
+    input{
+        font-size: 1.4rem;
+       margin-top:1rem;
+       margin-left: .5rem;
+    }
+    .button{
+        color:white;
+        font-size: 1.4rem;
+        padding:1rem 2rem;
+        background-color:var(--blue);  
+        border-radius: 2rem;
+        border:none;
+        transition: all .9s;
+    }
+    .button:hover{  
+        background-color:var(--black);     
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+    }
+    select{
+        width:15rem;
+        padding: 0.3rem;
+        border-color: var(--gray-3);
+    }
+    select:focus {
+        outline:none;
+        // box-shadow: #C2DBFE 0px 5px 16px;
+        border-color: #86B7FE; 
+    }
+    input[type="radio"] {
+        padding-top:1rem;
+    }
+   }
+}

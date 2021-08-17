@@ -1,0 +1,118 @@
+@import "../../scss/main.scss";
+.Detail{
+    padding:5rem;
+    @include breakpoint(mobile-med){
+        padding: 5rem 0;
+    }
+    .closeButton{
+        position:absolute;
+        right:0;
+        top:0;
+        cursor: pointer;
+        .icon{
+            font-size:2rem;
+        }
+    }
+    .image{
+        background-color:var(--gray-2);
+        height:100%;
+        overflow: hidden;
+        img{
+            width:80%;
+            height:100%;
+            transform: scale(1);
+            transition: .4s ease-in-out;
+        }
+    }
+    .image:hover img{
+        transform: scale(1.2);
+    }
+    .detail{
+        padding-left: 4rem;
+        text-align: left;
+        @include breakpoint(mobile){
+            padding-left:0;
+        }
+        h3{
+            font-size: 2rem;
+            color:var(--gray-1);
+        }
+        p{
+            padding-top:2rem;
+            font-size: 1.4rem;
+            @include breakpoint(mobile){
+                padding-top:0rem;
+            }
+        }
+        .price{
+            font-size:1.4rem;
+            font-weight: 700;
+        }
+        .description{
+            font-size:1.4rem;
+            color:var(--gray-1);
+        }
+        .form{
+            padding-top:1rem;
+            padding-left: 14rem;
+            @include breakpoint(mobile-med){
+                padding-left: 12rem;    
+            }
+            // @include breakpoint(mobile){
+            //     padding-left: 4rem;
+            // }
+            .label{
+                font-size: 1.4rem;
+                padding-right: 2rem;
+            }
+            .select{
+                margin-left: 1rem;
+                font-size: 1.2rem;
+                padding: .5rem;
+            }
+        }
+        .wrapNumberProduct{
+            display:flex;
+            flex-direction:row;
+            padding-top:2rem ;
+            // padding-left: 8rem;
+            .plusButton,.numProduct,.substractButton{
+                width: 4rem;
+                height:2.5rem;
+                text-align: center;
+                font-weight: 600;
+                font-size: 1.5rem;
+                border: 1px solid var(--gray-3);
+            }
+            .plusButton,.substractButton{
+                cursor: pointer;
+            }
+            .plusButton::after{
+                content:"+";
+            }
+            .substractButton::after{
+                content:"-";
+            }
+            .plusButton:hover,.substractButton:hover{
+                transition:all .5s;
+                color: white;
+                background-color:var(--blue);
+            }
+        }
+        .button{
+            margin-left: 0rem;
+            margin-top: 2rem;
+            padding:1rem 2rem;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 600;
+            border-radius:2rem;
+            border:none;
+            background-color:var(--blue);
+            transition: all .5s;
+        }
+        .button:hover{
+            background-color: var(--black);
+        }
+    }
+}

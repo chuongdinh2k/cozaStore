@@ -1,0 +1,32 @@
+html {
+    font-size: 62.5%;
+  }
+.App{
+  font-family: 'Poppins', sans-serif;
+}
+.Toastify__toast {
+  font-size: 1.6rem;
+}
+.Toastify__toast--success {
+  background:var(--blue) !important;
+}
+// .Toastify__progress-bar {
+//   opacity: 0!important;
+// }
+.ratedStar{
+  color:#f9ba48;
+}
+.fa-star{
+  cursor: pointer;
+  font-size: 1.8rem;
+ color:#f9ba48;
+}
+.pl-1{
+  padding-left:1rem;
+}
+.pl-2{
+  padding-left:2rem;
+}
+.pl-3{
+  padding-left:3rem;
+}

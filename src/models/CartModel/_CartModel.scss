@@ -1,0 +1,86 @@
+@import "../../scss/main.scss";
+.modal.fade .CartModel.modal-dialog {
+    transform:translate(50%,0);
+}
+.modal.show .CartModel.modal-dialog {
+    transform: none;
+}
+.modal.fade .CartModel.modal-dialog{
+    right: -420px; 
+    @include breakpoint(tablet){
+        right:-150px;
+        
+    }
+    @include breakpoint(ipad){
+           right:-250px;
+    }
+    // @include breakpoint(mobile){
+    //     right:0px;
+    //     background-color:blue;
+    // }
+    // @media (max-width:768px){
+    //     right: -500px;  
+    //     background-color:blue;
+    // }
+    // @media (max-width:600px) {
+    //     right: 0px;
+    // }
+}
+.CartModel{
+    font-family: 'Poppins', sans-serif;
+    .modal-content{
+        box-sizing: border-box;
+        padding: 1.5rem;
+        height:90vh;
+       @include breakpoint(tablet){
+           font-size: 2rem;
+       }
+    
+    }
+    &__box{
+        height:1000px;
+        overflow:hidden;
+        overflow-y:scroll;
+        @include breakpoint(tablet){
+            font-size: 1.5rem;
+            height:200px;
+        }
+        // @media (min-width:768px){
+        //     font-size:2rem;
+        // }
+        // @include breakpoint(desktop){
+        //    height:800px;
+        // }
+        @include breakpoint(mobile-med){
+            height:400px;
+        }
+        // @media (max-width:768px){
+        //     height:500px;
+        // }
+    }
+    &__total{
+        padding-top:1rem;
+    }
+    &__item{
+        padding-top: 0.8rem;
+        height:100px;
+        width:100%;
+        display:flex;
+        flex-direction:row;
+        justify-content:space-around;
+        &-image{
+            height:100%;
+            width:80px;
+        }
+        &-title{
+            padding-left:.8rem;
+        }
+        .btn{
+            height:50px;
+        }
+    }
+    .modal-footer{
+        display:flex;
+        flex-direction:row;
+    }
+}

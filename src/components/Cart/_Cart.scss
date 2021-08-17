@@ -1,0 +1,90 @@
+@import "../../scss/main.scss";
+.Cart{
+    font-family: Poppins;
+    padding-top: 4rem;
+    color:var(--gray-1);
+    font-size: 1.6rem;
+    @include breakpoint(mobile-med){
+        font-size:1.6rem;
+        padding-top:1rem;
+    }
+    &__content{
+        padding-top:4rem;
+        @include breakpoint(mobile-med){
+            padding-top:1rem;
+        }
+    }
+    &__link{
+        text-align:left;
+    }
+    .table__item{
+        overflow: auto;
+        .table{
+            border: 1px solid var(--gray-3);
+            th,td{
+                padding:1rem;
+            }
+        }
+    }
+    &__image{
+        width:7rem;
+        height:7rem;
+        @include breakpoint(mobile-med){
+            width:4rem;
+            height:4rem;
+        }
+    }
+    tbody{
+        color:var(--gray-1);
+        font-family: 'Poppins-Regular';
+        p{color:black;font-weight:600}
+    }
+    .table>:not(:last-child)>:last-child>*{
+        border-bottom-color: var(--gray-3);
+    }
+    .wrapNumberProduct{
+        display:flex;
+        flex-direction:row;
+        // padding-left: 8rem;
+        .plusButton,.numProduct,.substractButton{
+            width: 6rem;
+            height:4rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 2rem;
+            border: 1px solid var(--gray-3);
+            @include breakpoint(mobile-med){
+                width:4rem;
+                height:2rem;
+                font-size: 1.2rem;
+            }
+        }
+        .plusButton,.substractButton{
+            cursor: pointer;
+        }
+        .plusButton::after{
+            content:"+";
+        }
+        .substractButton::after{
+            content:"-";
+        }
+        .plusButton:hover,.substractButton:hover{
+            transition:all .5s;
+            color: white;
+            background-color:var(--blue);
+        }
+        .numProduct{
+            @include breakpoint(mobile){
+                width:6rem;
+            }
+            @include breakpoint(mobile-med){
+                width:3rem;
+            }
+        }
+    }
+    // .table>:not(caption)>*>*{
+    //     @include breakpoint(mobile-med){
+    //         padding:0;
+    //     }
+    // }
+}

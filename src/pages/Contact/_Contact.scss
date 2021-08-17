@@ -1,0 +1,81 @@
+.Contact{
+    .row{
+        --bs-gutter-x:0
+    }
+    
+    &__title{
+        height:24rem;
+        width: 100%;
+        background-image:url("https://preview.colorlib.com/theme/cozastore/images/xbg-01.jpg.pagespeed.ic.2e1HWxQapm.webp") ;
+        background-position: center;
+        position: relative;
+        h2{
+            font-size: 4rem;
+            font-weight: 800;
+            color:white;
+            line-height: 1.1;
+            position:absolute;
+            top: 50%; right: 50%;
+            transform: translate(50%,-50%);
+        }
+    }
+    &__content{
+        // padding: 2rem;
+        margin-top:6rem;
+        margin-bottom:6rem;
+    }
+    &__content-right,&__content-left{
+        border: 1px solid var(--gray-3);
+        padding:4rem;
+        height:45rem;
+    }
+    &__form{
+        font-size:1.5rem;
+        .input-field{
+            font-size:1.5rem;
+            padding:1rem;
+            margin-top:2rem;
+            margin-bottom:2rem;
+        }
+        .input-textarea{
+            height:20rem;
+            font-size:1.5rem;
+            padding:1rem;
+        }
+        .button{
+            width:100%;
+            margin-top:2rem;
+            color:white;
+            padding: 1rem 2rem;
+            background-color: var(--blue);
+            border-radius: 2rem;
+            border:none;
+            transition:all .9s;
+        }
+        .button:hover{
+            background-color:var(--black);
+        }
+        .button:focus{
+            outline:none;
+        }
+    }
+    &__content-right{
+        font-size:1.5rem;
+        .content{
+            padding-right:2rem;
+            padding-top:4rem;
+            padding-bottom:4rem;
+            text-align:left;
+            i{
+                padding-right:1rem;
+            }
+            p{
+                padding-top:1rem;
+                color:var(--gray-1);
+            }
+        }
+        .text-right{
+            text-align:right;
+        }
+    }
+}

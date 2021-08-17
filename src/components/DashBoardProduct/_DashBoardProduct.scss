@@ -1,0 +1,16 @@
+@import "../../scss/main.scss";
+.DashBoardProduct{
+    height:100%;
+    color:var(--black);
+    background-color: #FCFCFC;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    &__table{
+        font-size: 1.4rem;
+        text-align: left;
+    }
+    &__table-image{
+        width: 5rem;
+        height: 5rem;
+    }
+}

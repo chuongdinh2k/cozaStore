@@ -1,0 +1,91 @@
+@import "../../scss/main.scss";
+.ShopNavCollapse{
+    text-align: left;
+    font-family: Poppins,sans-serif;
+    .card{
+        padding:2rem;
+        border:none;
+        background-color: #F2F2F2;
+    }
+    h4{
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+    .activeFilter{
+        color: var(--blue);
+        border-bottom:1px solid var(--blue);
+    }
+    &__menu{
+        padding:0;
+        margin:0;
+    }
+    &__menu-item{
+        list-style: none;
+        padding: .8rem 0;
+    }
+    &__menu-link{
+        font-size: 1.4rem;
+        color:var(--gray-2);
+        line-height:1;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    &__menu-link.type{
+        padding:.5rem 2rem;
+        border-radius: 2rem;
+        border:1px solid var(--gray-2);
+    }
+    &__menu-link.type:hover{
+        color:var(--blue);
+        border-color:var(--blue) ;
+    }
+    &__menu-color{
+        // font-size: 5rem;
+        width:1.5rem;
+        height:1.5rem;
+        margin-right: 0.5rem;
+        border-radius: 100%;
+        background-color:gray;
+    }
+    &__button{
+        color: white;
+        background-color:var(--blue);
+        padding:.5rem 2rem;
+        font-size: 1.4rem;
+        border-radius: 2rem;
+        border: none;
+        transition:all .9s;
+    }
+    &__button:hover{
+        background-color:var(--black) ;
+    }
+    &__button:focus{
+        outline:none;
+    }
+    .card.Search{
+        background-color:white;
+        padding:1rem 2rem;
+        border: 1px solid var(--gray-3);
+    }
+    &__Search-input{
+        font-family: sans-serif;
+        width:80%;
+        font-size: 1.6rem;
+        border:none;
+    }
+    &__Search-input:focus{
+        outline:none;
+    }
+    &__Search-button{
+        padding-right: .5rem;
+        border:none;
+        background-color:white;
+    }
+    &__Search-button i{
+        color:var(--gray-2);
+        font-size: 1.4rem;
+    }
+    &__Search-button:hover i{
+        color:var(--blue);
+    }
+}

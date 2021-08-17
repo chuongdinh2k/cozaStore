@@ -1,0 +1,78 @@
+@import "../../scss/main.scss";
+
+.Footer{
+    background-color:var(--black);
+    color: white;
+    padding-top: 8rem;
+    padding-bottom:4rem;
+    .item{
+        display:flex;
+        flex-direction: column;
+        text-align: left;
+        padding-bottom: 2rem;
+        h3{
+            font-size: 1.8rem;
+            padding-bottom: 2rem;
+        }
+        .address:hover{
+            color:var(--gray-2);
+        }
+        p{
+            padding: .5rem 0 ;
+            color:var(--gray-2);
+            font-size: 1.4rem;
+        }
+        p:hover{
+            cursor: pointer;
+            color: var(--blue);
+        }
+        .icon{
+            font-size: 2rem;
+            padding-right: 2rem;
+        }
+        .icon:hover{
+            cursor: pointer;
+            color: var(--blue);
+        }
+    }
+    &__input{
+        font-size: 1.4rem;
+        color:var(--gray-2);
+        padding: .5rem 1rem;
+        border:none;
+        background-color:transparent;
+    }
+    &__input:focus{
+        outline:none;
+    }
+    &__inputBorder{
+        height:2px;
+        width:100%;
+        background-color:var(--gray-1);
+    }
+    &__inputBorder::after{
+        content:"";
+        position:absolute;
+        height:2px;
+        width:0;
+    }
+    &__input:focus &__inputBorder::after{
+        width:100%;
+        background-color:var(--blue);
+        transition: all .9s;
+    }
+    &__button{
+        font-size: 1.4rem;
+        padding: 1.2rem 4rem;
+        margin-top:2rem;
+        background-color:var(--blue);
+        color:white;
+        border:none;
+        border-radius:3rem;
+    }
+    &__button:hover{
+        transition:all .5s;
+        color:var(--blue);
+        background-color:white;
+    }
+}

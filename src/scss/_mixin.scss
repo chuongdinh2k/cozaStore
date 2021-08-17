@@ -1,0 +1,80 @@
+// //responsivedesign
+
+// @mixin mq($point) {
+//     @if $point == desktop {
+//       @media (max-width: 1200px) {
+//         @content;
+//       }
+//     } @else if $point == laptop {
+//       @media (max-width: 992px) {
+//         @content;
+//       }
+//     } @else if $point == tablet {
+//       @media (max-width: 768px) {
+//         @content;
+//       }
+//     } @else if $point == phablet {
+//       @media (max-width: 480px) {
+//         @content;
+//       }
+//     } @else if $point == mobile {
+//       @media (max-width: 320px) {
+//         @content;
+//       }
+//     }
+//   }
+
+  // Breakpoints can be used with the follow syntax @include breakpoint(mobile)
+// That will target mobile styling and should be written within the styling
+// for the element that it is targeting.
+
+$mobile-small: 		525px 	!default;;
+$mobile-medium: 	650px 	!default;
+$tablet-portrait: 	768px 	!default;
+$tablet-landscape: 	1024px 	!default;
+$desktop: 			1200px 	!default;
+
+
+@mixin breakpoint($point){
+	@if $point == mobile{    
+		@media (max-width: $tablet-landscape - 1)
+    {
+			@content;
+    }
+  }
+	@else if $point == mobile-med{
+		@media (max-width: $mobile-medium){
+      @content;
+    }
+  }
+	@else if $point == mobile-sm{
+		@media (max-width: $mobile-small){
+      @content;
+    }
+  }
+	@else if $point == tablet{
+    @media (max-width: $tablet-landscape - 1) and (min-width: $tablet-portrait){
+      @content;
+    }
+  }
+  @else if $point == ipad{
+    @media (max-width: $tablet-landscape) and (min-width: $tablet-portrait){
+      @content;
+    }
+  
+  }
+	@else if $point == desktop{
+		@media (min-width : $tablet-landscape + 1) and (max-width : $desktop){
+      @content;
+    }
+  }
+	@else if $point == desktop-lg{
+		@media (min-width: $desktop + 1){
+      @content;
+    }
+  }
+  // @mixin retina
+
+	// @media (-webkit-min-device-pixel-ratio : 1.5) and (min-device-pixel-ratio : 1.5)
+	// 	@content
+}

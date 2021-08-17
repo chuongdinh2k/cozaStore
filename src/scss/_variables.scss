@@ -1,0 +1,17 @@
+:root {
+   --blue: #717FE0;
+   --black: #222222;
+   --gray-1:#888;
+   --gray-2: #b2b2b2;
+   --gray-3:#E6E6E6;
+   --background-gray:#F3F4ED;
+  }
+  
+  $desktop: desktop;
+  $laptop: laptop;
+  $tablet: tablet;
+  $phablet: phablet;
+  $mobile: mobile;
+  
+  $header-height: 10rem;
+  $screen-max-width: 166rem;
