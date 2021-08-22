@@ -1,5 +1,5 @@
 import "./_Header.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userSignOutAction } from "../../redux/actions";
@@ -11,21 +11,27 @@ import {
   Nav,
   NavItem,
   Container,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 import { LOCAL_STORAGE_USER_INFO } from "../../redux/constant";
 import { checkName } from "../../utils";
 
 const Header = (props) => {
-  // const state = useSelector((state) => state);
-  // console.log(state);
+  //drop down userInfo
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleUserInfo = () => setDropdownOpen(!dropdownOpen);
   const history = useHistory();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
 
-  console.log(userState.data?.name);
   const cartLength = useSelector((state) => state.cart.length);
+
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  //sign out function
   const signOut = () => {
     localStorage.removeItem(LOCAL_STORAGE_USER_INFO);
     dispatch(userSignOutAction());
@@ -56,13 +62,63 @@ const Header = (props) => {
               ></i>
             </span>
           </div>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
+          {/* <NavbarToggler/> */}
+          <span className="Header__toggle d-md-none" onClick={toggle}>
+            <i class="fas fa-sliders-h"></i>
+          </span>
+          <div
+            className={`Header__mobile ${
+              isOpen ? "activeMobile" : "hiddenMobile"
+            }`}
+          >
+            <i class="fas fa-times-circle close" onClick={toggle}></i>
+            <ul>
+              <li>
+                {" "}
                 <NavLink exact to="/">
                   Home
                 </NavLink>
+              </li>
+              <li>
+                {" "}
+                <NavLink to="/shop/all">Shop</NavLink>
+              </li>
+              <li>
+                {" "}
+                <NavLink to="/about">About</NavLink>
+              </li>
+              <li>
+                {" "}
+                <NavLink to="/contact">Contact</NavLink>
+              </li>
+              <li>
+                <a className="Header__userInfor-mobile">
+                  {!userState.data ? (
+                    <span>
+                      <i
+                        className="fas fa-sign-in-alt icon"
+                        onClick={() => history.push("/login")}
+                      ></i>{" "}
+                      Log In
+                    </span>
+                  ) : (
+                    <span>
+                      {userState.data?.name}
+                      <i
+                        className="fas fa-sign-out-alt"
+                        style={{ paddingLeft: "0.5rem" }}
+                        onClick={signOut}
+                      ></i>
+                    </span>
+                  )}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <Collapse navbar>
+            <Nav className="mr-auto" navbar>
+              <NavItem>
+                <NavLink to="/">Home</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink to="/shop/all">Shop</NavLink>
@@ -128,16 +184,28 @@ const Header = (props) => {
                   Log In
                 </span>
               ) : (
-                <span>
-                  {" "}
-                  {/* {userState.data.name} */}
-                  {checkName(userState.data.name)}
-                  <i
-                    className="fas fa-sign-out-alt"
-                    style={{ paddingLeft: "0.5rem" }}
-                    onClick={signOut}
-                  ></i>
-                </span>
+                // <span>
+                //   {checkName(userState.data.name)}
+                //   <i
+                //     className="fas fa-sign-out-alt"
+                //     style={{ paddingLeft: "0.5rem" }}
+                //     onClick={signOut}
+                //   ></i>
+                // </span>
+                <Dropdown nav isOpen={dropdownOpen} toggle={toggleUserInfo}>
+                  <DropdownToggle nav caret style={{ listStyle: "none" }}>
+                    {checkName(userState.data.name)}
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem>Profile Setting</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={() => history.push("/orderHistory")}>
+                      Order History
+                    </DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={signOut}>Sign Out</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               )}
             </div>
           </Collapse>

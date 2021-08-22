@@ -4,6 +4,7 @@ import { Col, Row, Spinner, Table } from "reactstrap";
 import { getAllUsers, URL } from "../../api";
 import DashBoardTopHeader from "../DashBoardTopHeader/DashBoardTopHeader";
 import moment from "moment";
+import "./_UserList.scss";
 const UserList = ({ icon, name, userInfo }) => {
   const [users, setUsers] = useState();
   const userToken = userInfo.accessToken ? userInfo.accessToken : "";
@@ -13,7 +14,6 @@ const UserList = ({ icon, name, userInfo }) => {
         Authorization: `Bearer ${userToken}`,
       },
     });
-    console.log(data);
     setUsers(data.data.user);
   }, [setUsers]);
 
@@ -21,8 +21,12 @@ const UserList = ({ icon, name, userInfo }) => {
     <div>
       <DashBoardTopHeader icon={icon} name={name} />
       <Row className="justify-content-center">
-        <Col xs={12}>
-          <Table bordered style={{ fontSize: "1.5rem" }}>
+        <Col xs={12} style={{ overflowX: "auto" }}>
+          <Table
+            className="userList__table"
+            bordered
+            style={{ fontSize: "1.5rem", overflowX: "scroll" }}
+          >
             <thead>
               <tr>
                 <th>#</th>

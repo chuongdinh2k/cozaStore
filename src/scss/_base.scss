@@ -3,6 +3,8 @@ html {
   }
 .App{
   font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
 .Toastify__toast {
   font-size: 1.6rem;

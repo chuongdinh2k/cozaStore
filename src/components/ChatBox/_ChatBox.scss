@@ -1,0 +1,104 @@
+@import "../../scss/main.scss";
+.ChatBox{
+    position: fixed;
+    z-index: 100;
+    bottom:5%;
+    right:10%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   
+    &__Button{
+        position: relative;
+        padding: .5rem 1rem;
+        border-radius:.5rem;
+        background-color: var(--blue);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border:none;
+        i{
+            font-size:3rem;
+            color:white;
+        }
+        @include animation('ring 4s .7s ease-in-out infinite');
+    }
+    .card{
+        font-size: 1.4rem;
+       height:35rem;
+        width:30rem;
+    }
+    .card-header{
+        position:relative;
+        // text-align:right;
+        i{   
+            position:absolute;
+            right: .5rem;
+            top:0;
+            font-size: 2rem;
+        }
+        i:hover{
+            cursor: pointer;
+            color:red;
+        }
+    }
+    // .messages-box{
+    //     height: 20rem;
+    //     overflow-y:scroll;
+    // }
+    .messages-list{
+        height: 20rem;
+        overflow-y:scroll;
+        text-align: left;
+        padding: 0;
+        margin: 0;
+        li{
+            list-style: none;
+        }
+    }
+    .form-group{
+       .row{
+        --bs-gutter-x: 0;
+       }
+        width: 100%;
+        position:absolute;
+        // left:0
+        bottom:.5rem;
+        .form-control{
+            font-size: 1.2rem;
+            border-radius: 5px;
+        }
+        .button{
+            color:white;
+            // width:100%;
+            padding:.5rem;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            background-color:var(--blue);
+            border: none;
+        }
+    }
+}
+@include keyframes(ring) {
+    0% { transform: rotateZ(0); }
+    1% { transform: rotateZ(30deg); }
+    3% { transform: rotateZ(-28deg); }
+    5% { transform: rotateZ(34deg); }
+    7% { transform: rotateZ(-32deg); }
+    9% { transform: rotateZ(30deg); }
+    11% { transform: rotateZ(-28deg); }
+    13% { transform: rotateZ(26deg); }
+    15% { transform: rotateZ(-24deg); }
+    17% { transform: rotateZ(22deg); }
+    19% { transform: rotateZ(-20deg); }
+    21% { transform: rotateZ(18deg); }
+    23% { transform: rotateZ(-16deg); }
+    25% { transform: rotateZ(14deg); }
+    27% { transform: rotateZ(-12deg); }
+    29% { transform: rotateZ(10deg); }
+    31% { transform: rotateZ(-8deg); }
+    33% { transform: rotateZ(6deg); }
+    35% { transform: rotateZ(-4deg); }
+    37% { transform: rotateZ(2deg); }
+    39% { transform: rotateZ(-1deg); }
+    41% { transform: rotateZ(1deg); }
+    43% { transform: rotateZ(0); }
+    100% { transform: rotateZ(0); }
+  }
+  

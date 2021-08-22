@@ -1,12 +1,12 @@
 @import "../../scss/main.scss";
 .Cart{
-    font-family: Poppins;
+    font-family: "Poppins-Regular";
     padding-top: 4rem;
     color:var(--gray-1);
     font-size: 1.6rem;
     @include breakpoint(mobile-med){
         font-size:1.6rem;
-        padding-top:1rem;
+        padding-top:4rem;
     }
     &__content{
         padding-top:4rem;

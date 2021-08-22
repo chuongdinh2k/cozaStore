@@ -1,0 +1,80 @@
+@import "../../scss/main.scss";
+.BannerCarousel{
+    width: 100%;
+    .carousel-item{
+        position: relative;
+    }
+    .carousel-control-prev-icon{
+        color:black;
+    }
+    img{
+        width:100%;
+    }
+    .caption{
+        width:40rem;
+        height:10rem;
+        position: absolute;
+        color:white;
+        top: 35%;
+        left: 10%;
+
+        h3,h4{
+            color:var(--black);
+        }
+        h4{
+            position: relative;
+            font-size:2.5rem;
+            color:var(--gray-1);
+            // animation:#{$h4};
+            @include animation('move-left 5s infinite 2s');
+        }
+          @include keyframes(move-left) {
+            0% {left:-5rem; opacity: 0; }
+            50% {left:0rem; opacity: 1; }
+          }
+        h3{
+            position: relative;
+            padding-top:2rem ;
+            font-size:4rem;
+            font-family: 'Poppins';
+            @include animation('move-right 5s infinite 3s');
+        }
+        @include keyframes(move-right) {
+            0% {right:-5rem; opacity: 0; }
+            50% {right:0rem; opacity: 1; }
+          }
+        @include breakpoint(mobile-med){
+            width:20rem;
+            top: 30%;
+            left: 5%;
+            h4{
+                font-size: 1.2rem;
+            }
+            h3{
+                padding-top:0.5rem ;
+                font-size: 1.5rem;
+            }
+        }
+    }
+    .button{
+        font-size: 1.8rem;
+        padding: 1rem 3rem;
+        margin-top:2rem;
+        color:white;
+        border:none;
+        border-radius: 2rem;
+        background-color:var(--blue);
+        transition: all 0.3s linear;
+        @include breakpoint(mobile-med){
+            font-size: 1rem;
+            padding: 0.5rem 1.5rem;
+            margin-top:0.5rem;
+        }
+    }
+    .button:focus{
+        outline:none;
+    }
+    .button:hover{
+        background-color:var(--black);
+    }
+}

@@ -6,17 +6,43 @@
     }
     &__nav-mobile{
         @include breakpoint(mobile-med){
-            display: block;
+            // display: block;
         }
     }
+    // .toggle{
+    //     // position: absolute;
+    //     // left: 0;
+    //     // top: 4rem;
+    // }
+    .showNav{
+        @include breakpoint(mobile-med){
+            left: 0;
+        }
+    }
+    .close{
+        position: absolute;
+        right: 0;
+        top: 0;
+        color:white;
+        font-size: 2rem;
+       @include breakpoint(mobile-med){
+           display: inline-block!important;
+       }
+    }
     &__nav{
+        position: fixed;
+        left: 0;
+        top: 0;
         height: 100vh;
         padding: 0.5rem;
+        width:20rem;
+        z-index: 100;
         font-family: Poppins,sans-serif;
         background-color:#08092B;
         text-align: left;
+        transition:.5s linear;
         @include breakpoint(mobile-med){
-            display: none;
+            left: -100%;
         }
     }
     h2{

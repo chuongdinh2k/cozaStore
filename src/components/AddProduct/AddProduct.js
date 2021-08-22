@@ -8,16 +8,17 @@ import axios from "axios";
 import { postProduct } from "../../api";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../redux/actions";
+import qs from "qs";
 function AddProduct() {
   const dispatch = useDispatch();
+  const [result, setResult] = useState(null);
   const userInfo = useSelector((state) => state.user.data);
-  const accessToken = userInfo?.accessToken;
+  const user = userInfo;
   //color data
   const Color = ["black", "blue", "gray", "yellow", "white", "pink"];
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const [category, setCategory] = useState(null);
-  console.log(category);
   const [file, setFile] = useState({
     image: "",
   });
@@ -45,15 +46,43 @@ function AddProduct() {
     formData.append("countInStock", data.countInStock);
     formData.append("rating", 1);
     formData.append("description", data.description);
-    dispatch(addProduct.addProductRequest({ formData, user: accessToken }));
-    // const res = postProduct({ formData, user: accessToken });
-    // console.log("res", res);
+    // formData = JSON.stringify(formData);
+    // dispatch(addProduct.addProductRequest(formData, user));
+
+    //test api
+    // const result = await postProduct(formData);
+    // console.log(result);
+    axios
+      .post("http://localhost:5000/api/product/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((res) => {
+        alert("upload successfully");
+      })
+      .catch((err) => {
+        // alert(err.response.data.messsage);
+        alert("Error! tên sản phẩm đã tồn tại");
+      });
+  };
+  console.log(result);
+  const test = async () => {
+    let formData = new FormData();
+    formData.append("test", "this is test!");
+    const data = await axios.post(
+      "http://localhost:5000/api/product/test",
+      formData,
+      {
+        headers: { "Content-Type": "multipart/form-data " },
+      }
+    );
+    console.log(data);
   };
   return (
     <div className="AddProduct">
       <Button onClick={toggle} color="primary">
         NEW PRODUCT <i class="fas fa-plus"></i>
       </Button>
+      <Button onClick={test}>Test api</Button>
       <Row>
         <Col xs={12} md={12}>
           <Collapse isOpen={isOpen}>

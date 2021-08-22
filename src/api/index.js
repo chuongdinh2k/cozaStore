@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 // const userToken = useSelector((state) => state.user);
-// export const URL = "http://localhost:5000" || process.env.API_SERVER;
-export const URL = "https://mern-app-saleweb.herokuapp.com";
+export const URL = "http://localhost:5000";
+// export const URL = "https://mern-app-saleweb.herokuapp.com";
 //login api
 export const userAuthLogin = (payload) =>
   axios.post(`${URL}/api/auth/login`, payload);
@@ -38,11 +38,12 @@ export const productReview = (payload) =>
 
 //post product
 // url get province
-export const postProduct = (payload) => {
-  axios.post(`${URL}/api/product/upload`, payload.formData, {
+export const postProduct = async (payload) => {
+  await axios.post(`${URL}/api/product/upload`, payload.formData, {
     headers: {
       Authorization: `Bearer ${payload.user}`,
       "Content-Type": "multipart/form-data",
+      "Access-Control-Max-Age": "86400",
     },
   });
 };

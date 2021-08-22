@@ -3,15 +3,21 @@ import { Table, Label, Input, Button } from "reactstrap";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as api from "../../api";
 import "./_CartTotal.scss";
 import { shippingActions, showAuth } from "../../redux/actions";
 import { LOCAL_STORAGE_SHIPPING } from "../../redux/constant";
 function CartTotal({ subTotal }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const shippingState = useSelector((state) => state.shipping);
   const user = useSelector((state) => state.user.data);
-  console.log(shippingState);
   const [province, setProvince] = useState("");
   const [district, setDistrict] = useState("");
   const [ward, setWard] = useState("");
@@ -21,8 +27,6 @@ function CartTotal({ subTotal }) {
     ward: "",
   });
   const [payment, setPayment] = useState();
-  // const [provinceId, setProvinceId] = useState("");
-  const { register, handleSubmit } = useForm();
   useEffect(() => {
     axios({
       methods: "post",
@@ -155,12 +159,13 @@ function CartTotal({ subTotal }) {
           ...selectedValue,
         })
       );
+      history.push("/orderHistory");
     }
   };
   // place order
   // console.log(payment);
   return (
-    <form className="table__total">
+    <form className="table__total" onSubmit={handleSubmit(onSubmit)}>
       <Table>
         <thead>
           <tr>
@@ -226,12 +231,29 @@ function CartTotal({ subTotal }) {
               <p>Address:</p>
             </td>
             <td>
-              <div style={{ display: "flex" }}>
+              <Input
+                type="text"
+                {...register("address", { required: true })}
+                placeholder="ex: số 6 - Phan Đình Giót..."
+              />
+              {errors.address && (
+                <span style={{ color: "red" }}>This field is required</span>
+              )}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Full-name:</p>
+            </td>
+            <td>
+              <div>
                 <Input
-                  type="text"
-                  {...register("address")}
-                  placeholder="ex: số 6 - Phan Đình Giót..."
+                  type="fullname"
+                  {...register("fullName", { required: true })}
                 />
+                {errors.fullName && (
+                  <span style={{ color: "red" }}>This field is required</span>
+                )}
               </div>
             </td>
           </tr>
@@ -241,7 +263,13 @@ function CartTotal({ subTotal }) {
             </td>
             <td>
               <div>
-                <Input type="number" {...register("phone")} />
+                <Input
+                  type="number"
+                  {...register("phone", { required: true })}
+                />
+                {errors.phone && (
+                  <span style={{ color: "red" }}>This field is required</span>
+                )}
               </div>
             </td>
           </tr>
@@ -275,9 +303,7 @@ function CartTotal({ subTotal }) {
           </tr>
           <tr>
             <td colspan="2">
-              <button class="button" onClick={handleSubmit(onSubmit)}>
-                PLACE ORDER
-              </button>
+              <button class="button">PLACE ORDER</button>
             </td>
           </tr>
         </tbody>

@@ -5,12 +5,15 @@
 //        padding-right: 4rem;
 //        padding-top: 4rem;
 //    }
+
    @include breakpoint(mobile-med){
     padding-left:1rem;
     padding-right: 1rem;
     padding-top: 1rem;
 }
    .table{
+    //    background-color:var(--gray-3);
+    font-family: "Poppins-Regular";
     border: 1px solid var(--gray-3);
     th,td{
         padding:1rem;

@@ -19,6 +19,10 @@ import AdminHeader from "./components/AdminHeader/AdminHeader";
 import AdminRoute from "./components/AdminRoute/AdminRoute";
 import DashBoard from "./pages/DashBoard/DashBoard";
 import Contact from "./pages/Contact/Contact";
+import LoadingModal from "./models/Loading/Loading";
+import ChatBox from "./components/ChatBox/ChatBox";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import OrderHistory from "./components/OrderHistory/OrderHistory";
 function App() {
   const userInfo = useSelector((state) => state.user.data);
   // console.log("admin", admin);
@@ -29,6 +33,8 @@ function App() {
         <ToastContainer autoClose={2000} />
         <AuthModal />
         <QuickViewModal />
+        {userInfo && userInfo.isAdmin ? "" : <ChatBox />}
+        {/* <LoadingModal /> */}
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -58,6 +64,10 @@ function App() {
           <Route path="/contact">
             <Contact />
           </Route>
+          <PrivateRoute
+            path="/orderHistory"
+            component={OrderHistory}
+          ></PrivateRoute>
 
           {/* adminRoute */}
           <AdminRoute path="/dashboard" component={DashBoard}></AdminRoute>

@@ -1,6 +1,6 @@
 import "./_DashBoard.scss";
-import React from "react";
-import { Col, Row } from "reactstrap";
+import React, { useState } from "react";
+import { Col, NavbarToggler, Row } from "reactstrap";
 import { Route, Link, useHistory, Switch } from "react-router-dom";
 import { userSignOutAction } from "../../redux/actions";
 import { LOCAL_STORAGE_USER_INFO } from "../../redux/constant";
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DashBoardHome from "../../components/DashBoardHome/DashBoardHome";
 import DashBoardProduct from "../../components/DashBoardProduct/DashBoardProduct";
 import UserList from "../../components/UserList/UserList";
+import DashBoardMessenger from "../../components/DashBoardMessenger/DashBoardMessenger";
 const MenuLink = ({ label, to, activeOnlyWhenExact, icon }) => {
   return (
     <Route
@@ -60,7 +61,7 @@ const ObjectLink = [
   },
   {
     label: "Message",
-    to: "/dashboard/message",
+    to: "/dashboard/messenger",
     active: false,
     icon: "fas fa-envelope",
   },
@@ -77,6 +78,10 @@ const renderMenuLink = ObjectLink.map((item, index) => {
   );
 });
 function DashBoard() {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
   const userInfo = useSelector((state) => state.user.data);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -88,8 +93,9 @@ function DashBoard() {
   return (
     <div className="Dashboard">
       <Row>
-        <Col md={2} xs={2}>
-          <div className="Dashboard__nav">
+        <Col md={2} xs={1}>
+          <div className={`Dashboard__nav ${isOpen ? "showNav" : "none"}`}>
+            <i class="fas fa-times-circle close d-none" onClick={toggle}></i>
             <h2>ADMINTORY</h2>
             <ul className="Dashboard__nav-menu">
               {/* <li className="active">
@@ -105,13 +111,14 @@ function DashBoard() {
               </li>
             </ul>
           </div>
-          <div className="DashBoard__nav-mobile d-none">
+          {/* <div className="DashBoard__nav-mobile d-none">
             <span>
               <i class="fas fa-sliders-h"></i>
             </span>
-          </div>
+          </div> */}
         </Col>
         <Col md={10} xs={12}>
+          <i class="fas fa-sliders-h toggle d-md-none" onClick={toggle}></i>
           <Switch>
             {/* {ObjectLink.map((item, index) => {
               return (
@@ -134,6 +141,9 @@ function DashBoard() {
             </Route>
             <Route path="/dashboard/Order">
               <DashBoardHome name="Order" icon="fas fa-shopping-basket" />
+            </Route>
+            <Route path="/dashboard/messenger">
+              <DashBoardMessenger name="messenger" icon="fas fa-envelope" />
             </Route>
           </Switch>
         </Col>

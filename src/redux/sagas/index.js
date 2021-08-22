@@ -113,7 +113,8 @@ function* fetchPostProductSga(action) {
     }
     // toast.success(`add product successfully!`);
   } catch (err) {
-    toast.error(`add product successfully!`);
+    // toast.error(`add product successfully!`);
+    console.log(err.response);
   }
 }
 //toastify add to cart

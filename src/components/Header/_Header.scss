@@ -1,7 +1,7 @@
 @import '../../scss/main.scss';
 .Header{
-    
-    position:sticky;
+    // color:white;
+    position:fixed;
     top: 0;
     z-index: 99;
     padding-top: 1rem;
@@ -10,6 +10,7 @@
     background-color: white;
     font-family: 'Poppins', sans-serif;
     box-shadow:0px 2px 0px rgba(99, 128, 158, 0.2);
+    transition: all 0.2s ease-in-out;
     .icon-shoppingCart,.icon-heart{
         position: relative;
     }
@@ -50,7 +51,12 @@
     .navbar{
         // height:100%;
         font-size:1.5rem;
-        background:white;
+        background:transparent;
+        li{list-style: none;}
+        
+    }
+    .dropdown-item{
+        font-size:1.4rem;
     }
     .navbar-brand{
         font-size:2rem;
@@ -60,7 +66,7 @@
     }
 
     .navbar-collapse{
-        background-color:white;
+        background-color:transparent;
         padding-bottom: 1rem;
         .active{
             color:var(--blue);
@@ -124,5 +130,65 @@
     .navbar-toggler-icon{
         width: 0.8em;
         height: 0.8em;
+    }
+    &__toggle{
+        cursor: pointer;
+        // @include breakpoint(mobile-med){
+        //     display: block !important;;
+        // }
+    }
+    .activeMobile{
+        right:0;
+        // display:block;
+    }
+    .hiddenMobile{
+        right:-100%;
+        // display:none;
+    }
+    &__mobile{
+        height:80vh;
+        position: fixed;
+        right: 0;
+        // display:none;
+        // transform:translateX(100%);
+        top: 0;
+        text-align: left;
+        background-color:white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        transition: 1s linear;
+        .close{
+            cursor: pointer;
+            font-size: 2rem;
+            padding-bottom: 1rem;
+        }
+        ul{
+            text-align: center;
+            width:20rem;
+            padding: 0px;
+            margin: 0px;
+            // padding:1rem;
+            li{
+                width:100%;
+                list-style: none; 
+                display:flex;
+            }
+            a{
+                // padding:1rem 4rem; 
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+                width:100%;
+                border: 1px solid var(--gray-3);              
+                text-decoration:none;
+            }
+            li:hover a{
+                background-color:var(--blue);
+                color:white;
+            }
+            .active{
+                // padding:1rem 4rem;
+                background-color:var(--blue);
+                color:white;
+            }
+        }
     }
 }
