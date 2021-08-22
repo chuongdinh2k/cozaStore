@@ -14,9 +14,10 @@ import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import { useForm } from "react-hook-form";
 import { showAuth } from "../../redux/actions";
-const ENDPOINT =
-  "http://localhost:5000" || "https://mern-app-saleweb.herokuapp.com";
+import { URL } from "../../api";
 function ChatBox() {
+  const ENDPOINT = URL;
+  // console.log(ENDPOINT);
   const dispatch = useDispatch();
   // state
   const userInfo = useSelector((state) => state.user.data);
@@ -57,9 +58,9 @@ function ChatBox() {
     } else {
       setIsOpen(!isOpen);
       console.log(ENDPOINT);
-      var socket = io("http://localhost:5000", {
+      var socket = io(`${ENDPOINT}`, {
         cors: {
-          origin: "http://localhost:5000",
+          origin: `${ENDPOINT}`,
           credentials: true,
         },
         transports: ["websocket"],

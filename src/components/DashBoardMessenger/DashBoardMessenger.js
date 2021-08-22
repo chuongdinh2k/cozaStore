@@ -5,9 +5,9 @@ import { Col, Form, Input, Row } from "reactstrap";
 import DashBoardTopHeader from "../DashBoardTopHeader/DashBoardTopHeader";
 import "./_DashBoardMessenger.scss";
 import io from "socket.io-client";
+import { URL } from "../../api";
 function DashBoardMessenger({ icon, name }) {
-  const ENDPOINT =
-    "http://localhost:5000" || "https://mern-app-saleweb.herokuapp.com";
+  const ENDPOINT = URL;
   //react hook form
   const {
     register,
@@ -16,7 +16,6 @@ function DashBoardMessenger({ icon, name }) {
     formState: { errors },
   } = useForm();
   const uiMessagesRef = useRef(null);
-  const [messageBody, setMessageBody] = useState("");
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -59,8 +58,6 @@ function DashBoardMessenger({ icon, name }) {
         behavior: "smooth",
       });
     }
-    // const socket = io(ENDPOINT);
-    // setSocket(socket);
     if (socket) {
       socket.emit("onLogin", {
         _id: userInfo._id,
@@ -75,7 +72,6 @@ function DashBoardMessenger({ icon, name }) {
       });
     }
   }, [socket, messages]);
-  // console.log(listUsers[0].isAdmin);
   return (
     <div>
       <DashBoardTopHeader icon={icon} name={name} />

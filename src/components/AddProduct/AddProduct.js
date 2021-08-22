@@ -1,21 +1,13 @@
-import React, { useState, useRef, createFactory } from "react";
+import React, { useState } from "react";
 import { Button, Col, Collapse, Form, Input, Label, Row } from "reactstrap";
 import "./_AddProduct.scss";
-import { Controller, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import { postProduct } from "../../api";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../redux/actions";
-import qs from "qs";
+import { useSelector } from "react-redux";
+import { URL } from "../../api";
 function AddProduct() {
-  const URL =
-    "https://mern-app-saleweb.herokuapp.com" || "http://localhost:5000";
-  const dispatch = useDispatch();
-  const [result, setResult] = useState(null);
   const userInfo = useSelector((state) => state.user.data);
-  const user = userInfo;
+  // const user = userInfo;
   //color data
   const Color = ["black", "blue", "gray", "yellow", "white", "pink"];
   const [isOpen, setIsOpen] = useState(false);
@@ -48,12 +40,6 @@ function AddProduct() {
     formData.append("countInStock", data.countInStock);
     formData.append("rating", 1);
     formData.append("description", data.description);
-    // formData = JSON.stringify(formData);
-    // dispatch(addProduct.addProductRequest(formData, user));
-
-    //test api
-    // const result = await postProduct(formData);
-    // console.log(result);
     axios
       .post(`${URL}/api/product/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -66,25 +52,11 @@ function AddProduct() {
         alert("Error! tên sản phẩm đã tồn tại");
       });
   };
-  console.log(result);
-  const test = async () => {
-    let formData = new FormData();
-    formData.append("test", "this is test!");
-    const data = await axios.post(
-      "http://localhost:5000/api/product/test",
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data " },
-      }
-    );
-    console.log(data);
-  };
   return (
     <div className="AddProduct">
       <Button onClick={toggle} color="primary">
         NEW PRODUCT <i class="fas fa-plus"></i>
       </Button>
-      <Button onClick={test}>Test api</Button>
       <Row>
         <Col xs={12} md={12}>
           <Collapse isOpen={isOpen}>
