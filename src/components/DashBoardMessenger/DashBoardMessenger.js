@@ -6,7 +6,8 @@ import DashBoardTopHeader from "../DashBoardTopHeader/DashBoardTopHeader";
 import "./_DashBoardMessenger.scss";
 import io from "socket.io-client";
 function DashBoardMessenger({ icon, name }) {
-  const ENDPOINT = "http://localhost:5000";
+  const ENDPOINT =
+    "http://localhost:5000" || "https://mern-app-saleweb.herokuapp.com";
   //react hook form
   const {
     register,

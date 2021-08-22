@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../redux/actions";
 import qs from "qs";
 function AddProduct() {
+  const URL =
+    "https://mern-app-saleweb.herokuapp.com" || "http://localhost:5000";
   const dispatch = useDispatch();
   const [result, setResult] = useState(null);
   const userInfo = useSelector((state) => state.user.data);
@@ -53,7 +55,7 @@ function AddProduct() {
     // const result = await postProduct(formData);
     // console.log(result);
     axios
-      .post("http://localhost:5000/api/product/upload", formData, {
+      .post(`${URL}/api/product/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {

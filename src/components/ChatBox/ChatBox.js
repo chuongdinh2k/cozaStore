@@ -14,7 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 import { useForm } from "react-hook-form";
 import { showAuth } from "../../redux/actions";
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT =
+  "http://localhost:5000" || "https://mern-app-saleweb.herokuapp.com";
 function ChatBox() {
   const dispatch = useDispatch();
   // state
