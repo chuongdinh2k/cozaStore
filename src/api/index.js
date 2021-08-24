@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 // const userToken = useSelector((state) => state.user);
-// export const URL = "https://mern-app-saleweb.herokuapp.com";
-export const URL = "http://localhost:5000";
+export const URL = "https://mern-app-saleweb.herokuapp.com";
+// export const URL = "http://localhost:5000";
 //login api
 export const userAuthLogin = (payload) =>
   axios.post(`${URL}/api/auth/login`, payload);
