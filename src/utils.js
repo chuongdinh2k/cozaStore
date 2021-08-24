@@ -1,3 +1,5 @@
+import moment from "moment";
+
 //validate username
 export const checkName = (name) => {
   if (name.length > 7) {
@@ -10,6 +12,11 @@ export const checkName = (name) => {
     }
   }
   return name;
+};
+
+//convert times
+export const convertTime = (date) => {
+  return `${moment(date).format("DD/MM/YYYY")}`;
 };
 // render star
 export const renderStar = (stars) => {

@@ -55,12 +55,12 @@ const Header = (props) => {
                 onClick={() => history.push("/cart")}
               ></i>
             </span>
-            <span>
+            {/* <span>
               <i
                 className="far fa-heart icon icon-heart"
                 data-cart={cartLength}
               ></i>
-            </span>
+            </span> */}
           </div>
           {/* <NavbarToggler/> */}
           <span className="Header__toggle d-md-none" onClick={toggle}>
@@ -167,12 +167,12 @@ const Header = (props) => {
                   onClick={() => history.push("/cart")}
                 ></i>
               </span>
-              <span>
+              {/* <span>
                 <i
                   className="far fa-heart icon icon-heart"
                   data-cart={cartLength}
                 ></i>
-              </span>
+              </span> */}
             </div>
             <div className="Header__userInfor-desktop">
               {!userState.data ? (

@@ -13,10 +13,11 @@
     }
     .item{
         height:30rem;
+        margin:4rem 0;
         // background-color:var(--gray-2);
         @include breakpoint(mobile-med){
           padding: 2rem;
-          margin-top: 4rem;
+          margin: 2rem 0;
             // background-color:blue;
         }
     }

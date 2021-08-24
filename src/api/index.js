@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 // const userToken = useSelector((state) => state.user);
-export const URL = "https://mern-app-saleweb.herokuapp.com";
 // export const URL = "https://mern-app-saleweb.herokuapp.com";
+export const URL = "http://localhost:5000";
 //login api
 export const userAuthLogin = (payload) =>
   axios.post(`${URL}/api/auth/login`, payload);
@@ -37,7 +37,6 @@ export const productReview = (payload) =>
   );
 
 //post product
-// url get province
 export const postProduct = async (payload) => {
   await axios.post(`${URL}/api/product/upload`, payload.formData, {
     headers: {
@@ -47,14 +46,10 @@ export const postProduct = async (payload) => {
     },
   });
 };
-//get all user
-// export const getAllUsers = (user) => {
-//   axios.get(`${URL}/api/auth/user`, {
-//     headers: {
-//       Authorization: `Bearer ${user}`,
-//     },
-//   });
-// };
+// get user history orders
+export const getOwnOrdersApi = `${URL}/api/order/mine`;
+// ghn api
+// url get province
 export const ghn_province =
   "https://online-gateway.ghn.vn/shiip/public-api/master-data/province";
 

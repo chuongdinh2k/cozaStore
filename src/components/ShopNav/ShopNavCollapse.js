@@ -17,7 +17,7 @@ function ShopNavCollapse({ isOpen, isOpenSearch, filter, setFilter }) {
     // { min: "151.00" },
   ];
   const Color = ["black", "blue", "gray", "yellow", "white", "pink"];
-  const Type = ["Fashion", "LifeStyle", "Denim"];
+  const Type = ["1 Stars", "2 Stars", "3 Stars", "4 Stars", "5 Stars"];
   const render = (array) => {
     return array.map((e, i) => (
       <li key={i} className="ShopNavCollapse__menu-item">
@@ -27,6 +27,7 @@ function ShopNavCollapse({ isOpen, isOpenSearch, filter, setFilter }) {
   };
   const [searchValue, setSearchValue] = useState("");
   const [color, setColor] = useState("");
+  const [rating, setRating] = useState(1);
   const resetFilterValue = () => {
     setFilter({
       ...filter,
@@ -36,6 +37,7 @@ function ShopNavCollapse({ isOpen, isOpenSearch, filter, setFilter }) {
       pageNumber: 1,
       min: 1,
       max: 0,
+      rating: 1,
     });
     setColor("");
     setPrice({
@@ -45,26 +47,29 @@ function ShopNavCollapse({ isOpen, isOpenSearch, filter, setFilter }) {
     history.push(`/shop/${filter.category}?pageNumber=${filter.pageNumber}`);
   };
   const getFilterValue = () => {
+    // push value filter to URL
     history.push(
-      `/shop/${filter.category}?pageNumber=${filter.pageNumber}&min=${price.min}&max=${price.max}&color=${color}`
+      `/shop/${filter.category}?pageNumber=${filter.pageNumber}&min=${price.min}&max=${price.max}&color=${color}&rating=${rating}`
     );
+    // get value of filter result
     setFilter({
       ...filter,
       color: color,
       searchValue: "",
-      rating: 0,
+      rating: rating,
       pageNumber: 1,
       min: price.min,
       max: price.max,
     });
   };
+  // filter search
   const getFilterSearch = () => {
     setFilter({
       category: "all",
       pageNumber: 1,
       min: 1,
       max: 0,
-      rating: 0,
+      rating: 1,
       color: "",
       name: searchValue,
     });
@@ -72,7 +77,7 @@ function ShopNavCollapse({ isOpen, isOpenSearch, filter, setFilter }) {
       `/shop/${filter.category}?pageNumber=${filter.pageNumber}&q=${searchValue}`
     );
   };
-  console.log(color);
+  // console.log(color);
   return (
     <div className="ShopNavCollapse pt-5 pt-xs-2">
       <Collapse isOpen={isOpen}>
@@ -150,7 +155,7 @@ function ShopNavCollapse({ isOpen, isOpenSearch, filter, setFilter }) {
                 </ul>
               </Col>
               <Col xs={12} md={3}>
-                <h4>Type</h4>
+                <h4>Star</h4>
                 {Type.map((e, i) => (
                   <li key={i} className="ShopNavCollapse__menu-item d-flex">
                     <a className="ShopNavCollapse__menu-link type">{e}</a>

@@ -3,7 +3,6 @@
     text-align:left;
     padding-top: 8rem;
     padding-bottom: 4rem;
-
     &__submit{
         // background-color:var(--gray-3);
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -33,6 +32,25 @@
         }
         .button:hover{
             background-color:var(--black);
+        }
+    }
+    &__lastOrder{
+        overflow:auto;
+        .table{
+            padding:.5rem;
+            font-size: 1.4rem;
+            border: 1px solid var(--gray-3);
+            
+            // td,th{padding:.5rem}
+        }
+        .table-image{
+            width:5rem;
+            height:5rem;
+        }
+        .col-address{
+            @include breakpoint(mobile-med){
+               padding-right: 12rem;
+            }
         }
     }
 }

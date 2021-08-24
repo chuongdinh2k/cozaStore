@@ -1,5 +1,5 @@
 import "./_ShopNav.scss";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Row, Col } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import ShopNavCollapse from "./ShopNavCollapse";

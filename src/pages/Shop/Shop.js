@@ -19,7 +19,7 @@ function Shop() {
   const min = new URLSearchParams(search).get("min");
   const max = new URLSearchParams(search).get("max");
   const q = new URLSearchParams(search).get("q");
-  console.log("q", q);
+  const rating = new URLSearchParams(search).get("rating");
   // const q = new URLSearchParams(search).get("color");
   const [filter, setFilter] = useState({
     category: id ? id : "all",
@@ -29,6 +29,7 @@ function Shop() {
     rating: 0,
     name: q ? q : "",
     color: color ? color : "",
+    rating: rating ? rating : 1,
   });
   const dispatch = useDispatch();
   useEffect(async () => {
