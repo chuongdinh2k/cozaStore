@@ -5,6 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import Spinners from "../Spinner";
 import { getQuickViewProduct, showQickView } from "../../redux/actions";
 import { useHistory } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init({
+  duration: 800,
+});
 function ShopProducts() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -28,7 +33,7 @@ function ShopProducts() {
   const renderProducts = products.data ? (
     products.data.map((item) => (
       <Col xs={12} sm={6} md={3} key={item._id}>
-        <div className="item">
+        <div className="item" data-aos="zoom-in">
           <div className="image">
             <img src={item.image} alt={item.name} />
             <a onClick={() => showQickViewClick(item._id)}></a>

@@ -20,7 +20,6 @@ function Cart() {
     cartState.length !== 0
       ? cartState.reduce((acc, value) => acc + value.quantity * value.price, 0)
       : 0;
-  console.log(subTotal);
 
   const result =
     cartState.length != 0 ? (

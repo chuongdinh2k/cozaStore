@@ -46,6 +46,8 @@ export const postProduct = async (payload) => {
     },
   });
 };
+//post order
+export const postOrder = `${URL}/api/order`;
 // get user history orders
 export const getOwnOrdersApi = `${URL}/api/order/mine`;
 // ghn api

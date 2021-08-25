@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Col, Container, Row, Table, Collapse } from "reactstrap";
 import "./_OrderHistory.scss";
-import { getOwnOrdersApi } from "../../api";
+import { getOwnOrdersApi, postOrder } from "../../api";
 import { useSelector } from "react-redux";
 import { convertTime } from "../../utils";
 function OrderHistory() {
@@ -11,6 +11,14 @@ function OrderHistory() {
   const shippingAddress = JSON.parse(
     localStorage.getItem("LOCAL_STORAGE_SHIPPING")
   );
+  const cartState = useSelector((state) => state.cart);
+  console.log(cartState);
+  // total price in cart
+  const subTotal =
+    cartState.length !== 0
+      ? cartState.reduce((acc, value) => acc + value.quantity * value.price, 0)
+      : 0;
+
   // state toggle
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -29,7 +37,39 @@ function OrderHistory() {
         console.log(err);
       });
   }, [setOrders]);
-  console.log(orders);
+  // submit order
+  console.log(userInfo);
+  const submitOrderHandle = () => {
+    // console.log({ ...shippingAddress });
+    axios
+      // "http://localhost:5000"
+      .post(
+        `${postOrder}`,
+        {
+          orderItems: [...cartState],
+          shippingAddress: shippingAddress,
+          userId: userInfo.id,
+          username: userInfo.name,
+          email: userInfo.email,
+          shippingPrice: 0,
+          itemsPrice: subTotal,
+          totalPrice: subTotal,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        alert("Successfully! Thanks for buying!");
+        localStorage.removeItem("LOCAL_STORAGE_SHIPPING");
+      })
+      .catch((error) => {
+        alert("Oops, something went wrong. Please try again!");
+        console.log(error.message);
+      });
+  };
   return (
     <div className="orderHistory">
       <Container>
@@ -37,7 +77,7 @@ function OrderHistory() {
         <Row className="justify-content-center">
           {/* <h4>Your shipping address:</h4> */}
           <Col xs={12} md={6}>
-            {shippingAddress ? (
+            {shippingAddress && cartState.length != 0 ? (
               <div className="orderHistory__submit">
                 <h4>
                   Hi {shippingAddress.fullName}, please check and submit your
@@ -82,10 +122,14 @@ function OrderHistory() {
                 </div>
                 <p>Tax: $0</p>
                 <div className="Total d-flex">
-                  <p>ToTal</p>
-                  <p>$34.50</p>
+                  <p>ToTal: </p>
+                  <p style={{ paddingLeft: ".5rem" }}>
+                    <b>${subTotal}</b>
+                  </p>
                 </div>
-                <button className="button">Submit Order</button>
+                <button className="button" onClick={submitOrderHandle}>
+                  Submit Order
+                </button>
               </div>
             ) : (
               <p style={{ fontSize: "3rem" }}>There is no available order!</p>
@@ -137,7 +181,7 @@ function OrderHistory() {
                               </ul>
                             </td>
                             <td>{`${item.shippingAddress.address} - ${item.shippingAddress.ward}
-                          - ${item.shippingAddress.district} - ${item.shippingAddress.city}
+                          - ${item.shippingAddress.district} - ${item.shippingAddress.province}
                           `}</td>
                             <td>{item.shippingAddress.fullName}</td>
                             <td>{item.shippingAddress.phone}</td>

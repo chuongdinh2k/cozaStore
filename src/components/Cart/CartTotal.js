@@ -144,22 +144,32 @@ function CartTotal({ subTotal }) {
     if (!user) {
       dispatch(showAuth());
     } else {
-      localStorage.setItem(
-        LOCAL_STORAGE_SHIPPING,
-        JSON.stringify({
-          payment,
-          ...data,
-          ...selectedValue,
-        })
-      );
-      dispatch(
-        shippingActions.shippingAddress({
-          payment,
-          ...data,
-          ...selectedValue,
-        })
-      );
-      history.push("/orderHistory");
+      if (
+        !selectedValue.province ||
+        !selectedValue.district ||
+        !selectedValue.ward ||
+        !payment
+      ) {
+        alert("Please select address or payment method, thanks");
+        return;
+      } else {
+        localStorage.setItem(
+          LOCAL_STORAGE_SHIPPING,
+          JSON.stringify({
+            payment,
+            ...data,
+            ...selectedValue,
+          })
+        );
+        dispatch(
+          shippingActions.shippingAddress({
+            payment,
+            ...data,
+            ...selectedValue,
+          })
+        );
+        history.push("/orderHistory");
+      }
     }
   };
   // place order
@@ -199,7 +209,6 @@ function CartTotal({ subTotal }) {
             </td>
             <td>
               <select name="city" onChange={selectChange}>
-                {/* <option value="">Choose a province</option> */}
                 {provinceRender}
               </select>
             </td>
